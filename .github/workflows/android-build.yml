@@ -34,11 +34,24 @@ jobs:
             "platform-tools" \
             "platforms;android-34" \
             "build-tools;34.0.0" \
-            "cmake;3.22.1" \
             "ndk;24.0.8215888"
+
+      - name: Generate local.properties
+        run: |
+          echo "sdk.dir=${ANDROID_SDK_ROOT}" > local.properties
+          cat local.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build debug APK
-        run: ./gradlew --no-daemon --warning-mode all clean assembleDebug --stacktrace
+        run: ./gradlew --no-daemon :app:assembleDebug --stacktrace --info
+
+      - name: Upload build reports (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-build-reports
+          path: |
+            mundo/app/build/reports/**
+            mundo/**/build/outputs/logs/**
