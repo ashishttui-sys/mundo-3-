@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#1C2023</color>
+    <color name="primary">#4CAF50</color> <!-- A green accent -->
+    <color name="error">#F44336</color>   
+    <color name="black">#000000</color>
+    <color name="secondary">#3C3F58</color>
+    <color name="primaryText">#2B2E4A</color>
+    <color name="hintText">#9E9E9E</color>
+    <color name="buttonPrimary">#5C7AEA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background">#F5F5F5</color>
+    <color name="secodary2">#272E48</color>
+    <color name="button">#FF40CC7E</color>
+    <color name="background2">#C9221313</color>
+    <color name="crbgdm">#FF40CC7E</color>
+     <color name="darker_gray">#616161</color> <!-- Material Grey 700 -->
+    
+    <!-- New UI Colors -->
+    <color name="yellow_light">#FFEB3B</color>
+    <color name="yellow_dark">#FFD600</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#666666</color>
+    <color name="status_live">#00C853</color>
+    <color name="package_red">#E53935</color>
+    <color name="button_gray">#616161</color>
+    <color name="button_cyan">#29B6F6</color>
+</resources>

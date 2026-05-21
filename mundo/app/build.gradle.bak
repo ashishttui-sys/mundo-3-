@@ -1,0 +1,115 @@
+plugins {
+    id 'com.android.application'
+    id 'org.lsposed.lsparanoid'
+}
+
+
+
+class Scrambler {
+    Random random = new Random()
+
+    String getRandomString(int i) {
+        return random.with {(1..(6 + random.nextInt(i))).collect {(('a'..'z')).join()[ nextInt((('a'..'z')).join().length())]}.join()}
+    }
+}
+
+Scrambler scrambler = new Scrambler()
+
+android {
+    namespace 'com.bgmi'
+    compileSdk 34
+    
+    signingConfigs {
+        debug {
+            storeFile file("zen.jks")
+            storePassword "11111111"
+            keyPassword "11111111"
+            keyAlias "key0"
+        }
+        release {
+            storeFile file("zen.jks")
+            storePassword "11111111"
+            keyPassword "11111111"
+            keyAlias "key0"
+        }
+    }
+    
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
+    defaultConfig {
+        applicationId "com.bgmi"
+        minSdk 21
+        //noinspection OldTargetApi,EditedTargetSdkVersion,ExpiredTargetSdkVersion
+        targetSdk 28
+        versionCode 1
+        versionName "2024.09.21"
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+            }
+        }
+        ndk {
+            abiFilters "arm64-v8a"
+        }
+
+        multiDexEnabled  false
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            ndk {
+                debugSymbolLevel 'FULL' // Enable debugging symbols for native libraries
+            }
+        }
+        debug {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lsparanoid {
+        seed = 1919810
+        global = false
+        includeDependencies = false
+        variantFilter = { true }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path file('src/main/jni/Android.mk')
+        }
+
+    }
+    ndkVersion "24.0.8215888"
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", includes: ["*aar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'net.lingala.zip4j:zip4j:2.9.0'
+    implementation "com.airbnb.android:lottie:6.0.0"
+    implementation 
+}
