@@ -45,7 +45,12 @@ jobs:
         run: chmod +x mundo/gradlew
 
       - name: Build debug APK
-        run: ./mundo/gradlew -p mundo --no-daemon clean assembleDebug --stacktrace --info
+        run: ./mundo/gradlew -p mundo --no-daemon :app:assembleDebug -x lint -x test --stacktrace --info
+
+      - name: Dump Gradle daemon log on failure
+        if: failure()
+        run: |
+          find ~/.gradle/daemon -name "daemon-*.out.log" -print -exec tail -n 250 {} \;
 
       - name: Upload build reports (always)
         if: always()
