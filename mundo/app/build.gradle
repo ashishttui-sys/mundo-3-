@@ -91,7 +91,7 @@ android {
         seed = 1919810
         global = false
         includeDependencies = false
-        variantFilter = { true }
+        variantFilter = { it.buildType.name == "release" }
     }
 
     buildFeatures {

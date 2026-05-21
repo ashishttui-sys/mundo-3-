@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.view.animation.AlphaAnimation;
 import android.widget.Toast;
 
 import java.security.MessageDigest;
@@ -54,7 +55,7 @@ public class LogAct extends AppCompatActivity {
     private EditText textUsername;
     private Button btnLogin;
     private ImageView pasteBtn;
-    private TextView getKey;
+    private View getKey;
 
     private Dialog loadingDialog;
 
@@ -95,6 +96,12 @@ public class LogAct extends AppCompatActivity {
         btnLogin = findViewById(R.id.login);
         pasteBtn = findViewById(R.id.paste);
         getKey = findViewById(R.id.GetKey);
+
+        AlphaAnimation pulse = new AlphaAnimation(0.75f, 1f);
+        pulse.setDuration(1100);
+        pulse.setRepeatMode(AlphaAnimation.REVERSE);
+        pulse.setRepeatCount(AlphaAnimation.INFINITE);
+        findViewById(R.id.login).startAnimation(pulse);
 
         textUsername.setText(prefs.getSt(USER, ""));
 
