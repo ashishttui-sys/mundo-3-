@@ -14,11 +14,21 @@ jobs:
         working-directory: mundo
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+          cache: gradle
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK 24.0.8215888
+        run: sdkmanager "ndk;24.0.8215888"
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
       - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: ./gradlew --no-daemon assembleDebug --stacktrace

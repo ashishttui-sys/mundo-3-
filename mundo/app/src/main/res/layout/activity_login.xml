@@ -71,7 +71,7 @@
                 android:background="@drawable/bg_button_sky"
                 android:text="LOGIN"
                 android:textAllCaps="true"
-                android:textColor="#020B16"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

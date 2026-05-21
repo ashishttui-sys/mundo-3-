@@ -34,7 +34,7 @@
     </GridLayout>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="28dp" android:text="System Ready" android:textColor="#8C97A8" android:letterSpacing="0.3"/>
-    <Button android:id="@+id/btnStart" android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginTop="18dp" android:background="@drawable/bg_button_sky" android:text="START GAME" android:textColor="#020B16" android:textSize="20sp" android:textStyle="bold" />
+    <Button android:id="@+id/btnStart" android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginTop="18dp" android:background="@drawable/bg_button_sky" android:text="START GAME" android:textColor="#FFFFFF" android:textSize="20sp" android:textStyle="bold" />
     <Button android:id="@+id/btnStop" android:layout_width="1dp" android:layout_height="1dp" android:alpha="0" android:text="STOP"/>
     <TextView android:id="@+id/tvD" android:layout_width="1dp" android:layout_height="1dp" android:alpha="0"/>
     <TextView android:id="@+id/tvH" android:layout_width="1dp" android:layout_height="1dp" android:alpha="0"/>
