@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: mundo
     steps:
       - uses: actions/checkout@v4
 
@@ -20,6 +17,9 @@ jobs:
           distribution: temurin
           java-version: '17'
           cache: gradle
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/actions/wrapper-validation@v4
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -38,14 +38,14 @@ jobs:
 
       - name: Generate local.properties
         run: |
-          echo "sdk.dir=${ANDROID_SDK_ROOT}" > local.properties
-          cat local.properties
+          echo "sdk.dir=${ANDROID_SDK_ROOT}" > mundo/local.properties
+          cat mundo/local.properties
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: chmod +x mundo/gradlew
 
       - name: Build debug APK
-        run: ./gradlew --no-daemon :app:assembleDebug --stacktrace --info
+        run: ./mundo/gradlew -p mundo --no-daemon clean assembleDebug --stacktrace --info
 
       - name: Upload build reports (always)
         if: always()
