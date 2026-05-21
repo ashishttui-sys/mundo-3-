@@ -163,10 +163,16 @@ public class MAct extends AppCompatActivity {
                     Date expiry = sdf.parse(exdate());
                     long diff = expiry.getTime() - System.currentTimeMillis();
                     if (diff > 0) {
-                        ((TextView) findViewById(R.id.tvD)).setText(String.format("%03d", diff / 86400000));
-                        ((TextView) findViewById(R.id.tvH)).setText(String.format("%02d", (diff / 3600000) % 24));
-                        ((TextView) findViewById(R.id.tvM)).setText(String.format("%02d", (diff / 60000) % 60));
-                        ((TextView) findViewById(R.id.tvS)).setText(String.format("%02d", (diff / 1000) % 60));
+                        long days = diff / 86400000;
+                        long hours = (diff / 3600000) % 24;
+                        long minutes = (diff / 60000) % 60;
+                        long seconds = (diff / 1000) % 60;
+                        ((TextView) findViewById(R.id.tvD)).setText(String.format("%03d", days));
+                        ((TextView) findViewById(R.id.tvH)).setText(String.format("%02d", hours));
+                        ((TextView) findViewById(R.id.tvM)).setText(String.format("%02d", minutes));
+                        ((TextView) findViewById(R.id.tvS)).setText(String.format("%02d", seconds));
+                        ((TextView) findViewById(R.id.timerText)).setText(String.format("%dd %dh %dm %ds", days, hours, minutes, seconds));
+                        ((TextView) findViewById(R.id.validText)).setText("VALID UNTIL : " + exdate());
                         timerHandler.postDelayed(this, 1000);
                     } else {
                         Toast.makeText(MAct.this, "Expired", Toast.LENGTH_SHORT).show();
